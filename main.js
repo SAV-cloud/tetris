@@ -174,6 +174,12 @@ function countScore(destroyRows) {
     document.querySelector('.score').innerHTML = score;
 }
 
+function shaking() {
+    setTimeout(() => {
+        document.querySelector('.game').classList.remove('shaking');
+    }, 1000);
+}
+
 function removeFillRows(filledRows) {
     // filledRows.forEach(row => {
     //     dropRowsAbove(row);
@@ -190,8 +196,9 @@ function dropRowsAbove(rowDelete) {
     for (let row = rowDelete; row > 0; row--) {
         playfield[row] = playfield[row - 1];
     }
-
     playfield[0] = new Array(PLAYFIELD_COLUMNS).fill(0);
+    document.querySelector('.game').classList.add('shaking');
+    shaking();
 }
 
 function findFilledRows() {
