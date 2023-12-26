@@ -2,6 +2,13 @@
     margin: 0;
 }
 
+.game {
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: end;
+    gap: 32px;
+}
+
 body {
     background: linear-gradient(90deg, rgb(83, 83, 209), rgb(200, 255, 255));
     height: 100vh;
@@ -89,4 +96,49 @@ body {
         inset 3px 3px 3px rgba(255, 255, 255, 0.213),
         inset -3px -3px 3px rgba(4, 88, 43, 0.532),
         12px 12px 24px rgba(0, 0, 0, 0.6);     
+}
+
+@import url("https://fonts.googleapis.com/css2?family=Silkscreen&display=swap");
+
+.container {
+  max-width: 200px;
+  max-height: 200px;
+  background: #4c1d95;
+  border-radius: 12px;
+  border: 3px solid white;
+  display: flex;
+  align-self: center;
+  justify-content: space-around;
+  align-items: center;
+  color: white;
+  padding: 24px;
+  box-shadow: 0px 0px 3px black;
+}
+
+.row {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.col-heading h1 {
+  font-family: "Verdana";
+  font-style: normal;
+  font-weight: 200;
+  font-size: 24px;
+  line-height: 36px;
+  text-align: center;
+  color: white;
+}
+
+.col-display {
+  width: 74px;
+  height: 100%;
+  background: #080001;
+  border-radius: 5px;
+  font-family: "Silkscreen", cursive;
+  font-size: 24px;
+  text-align: center;
+  color: #f94f6d;
 }
