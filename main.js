@@ -91,10 +91,30 @@ function generateTetromino() {
         column: columnTetro,
     }
 }
+function restart() {
+    playfield = new Array(PLAYFIELD_ROWS).fill()
+    .map(() => 
+        new Array(PLAYFIELD_COLUMNS).fill(0)
+    );
+    generateTetromino();
+    document.querySelector('.score').innerHTML = 0;
+}
+
+function start() {
+    startLoop();
+    document.addEventListener('keydown', onKeyDown);
+}
+
+function pause() {
+    stopLoop();
+    document.removeEventListener('keydown', onKeyDown);
+}
 
 generatePlayfield();
 generateTetromino();
 const cells = document.querySelectorAll('.tetris div');
+
+
 // console.log(cells);
 
 function drawPlayField() {
@@ -129,7 +149,6 @@ function drawTetromino() {
     }
 }
 
-startLoop();
 
 function draw() {
     cells.forEach(function (cell) { cell.removeAttribute('class') });
@@ -144,11 +163,11 @@ function placeTetromino() {
             if (!tetromino.matrix[row][column]) {
                 continue;
             }
-
             playfield[tetromino.row + row][tetromino.column + column] = tetromino.name;
         }
     }
     const filledRows = findFilledRows();
+    console.log(playfield);
     console.log(filledRows);
     removeFillRows(filledRows);
     generateTetromino();
@@ -258,7 +277,7 @@ function rotateMatrix(matrixTetromino) {
     return rotateMatrix;
 };
 
-document.addEventListener('keydown', onKeyDown)
+document.addEventListener('keydown', onKeyDown);
 
 function onKeyDown(event) {
     // console.log(event);

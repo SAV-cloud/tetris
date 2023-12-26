@@ -12,14 +12,23 @@
     .game {
         flex-direction: column;
         align-items: center;
+        gap: 5px;
     }
     
     .container {
-        height: 24px;
+        height: 60px;
+    }
+
+    .button {
+        padding: 8px;
+        font-size: 8px;
+        font-weight: 300;
+        color: white;
+        line-height: 8px;
     }
 }
 .shaking {
-    animation: shake 1s;
+    animation: shake .5s;
     animation-iteration-count: infinite;
 }
 
@@ -135,12 +144,14 @@ body {
   border-radius: 12px;
   border: 3px solid white;
   display: flex;
+  flex-direction: column;
   align-self: center;
   justify-content: space-around;
   align-items: center;
   color: white;
-  padding: 24px;
+  padding: 20px;
   box-shadow: 0px 0px 3px black;
+  gap: 5px;
 }
 
 .row {
@@ -167,4 +178,25 @@ body {
   font-size: 24px;
   text-align: center;
   color: #f94f6d;
+}
+
+.buttons-box {
+    display: flex;
+    gap: 5px;
+}
+
+.button {
+    display: inline-block;
+    outline: 0;
+    border: 0;
+    cursor: pointer;
+    background-color: #8001ff;
+    border-radius: 4px;
+    max-width: 100px;
+    padding: 8px;
+    font-size: 16px;
+    border-bottom: 4px solid #2b6cb0;
+    font-weight: 700;
+    color: white;
+    line-height: 26px;
 }
