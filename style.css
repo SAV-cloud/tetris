@@ -27,6 +27,14 @@
         line-height: 8px;
     }
 }
+
+.board {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    justify-content: center;
+    align-items: center;
+}
 .shaking {
     animation: shake .5s;
     animation-iteration-count: infinite;

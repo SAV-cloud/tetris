@@ -84,7 +84,6 @@ function generatePlayfield() {
         .map(() => 
             new Array(PLAYFIELD_COLUMNS).fill(0)
         );
-    // console.log(playfield);
 }
 
 function generateNextField() {
@@ -97,7 +96,6 @@ function generateNextField() {
         .map(() => 
             new Array(NEXT_TETRO_COLUMNS).fill(0)
         );
-    // console.log(nexTetroField);
 }
 
 function generateTetromino(isFirst) {
@@ -165,9 +163,6 @@ generateTetromino(true);
 const cells = document.querySelectorAll('.tetris div');
 const cellsNext = document.querySelectorAll('.nextTetro div');
 
-
-// console.log(cells);
-
 function drawPlayField() {
 
     for (let row = 0; row < PLAYFIELD_ROWS; row++) {
@@ -215,9 +210,7 @@ function drawTetromino() {
 
 function drawTetrominoNext() {
     const name = nextTetromino.name;
-    console.log(name);
     const tetrominoMatrixSize = nextTetromino.matrix.length;
-    // console.log(tetromino);
     for (let row = 0; row < tetrominoMatrixSize; row++) {
         for (let column = 0; column < tetrominoMatrixSize; column++) {
             // cells[cellIndex].innerHTML = array[row][column];
@@ -231,7 +224,6 @@ function drawTetrominoNext() {
             cellsNext[cellIndex].classList.add(name);
         }
     }
-    console.log('Here');
 }
 
 function draw() {
@@ -365,7 +357,6 @@ function rotateMatrix(matrixTetromino) {
 document.addEventListener('keydown', onKeyDown);
 
 function onKeyDown(event) {
-    // console.log(event);
     switch (event.key) {
         case 'ArrowUp':
             rotateTetromino();
