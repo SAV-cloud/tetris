@@ -143,6 +143,8 @@ function restart() {
     score = 0;
     document.querySelector('.score').innerHTML = score;
     startLoop();
+    document.querySelector('.backdrop').classList.add('is-hidden');
+    document.addEventListener('keydown', onKeyDown);
 }
 
 function start() {
@@ -239,7 +241,15 @@ function placeTetromino() {
             if (!tetromino.matrix[row][column]) {
                 continue;
             }
-            playfield[tetromino.row + row][tetromino.column + column] = tetromino.name;
+            try {
+                playfield[tetromino.row + row][tetromino.column + column] = tetromino.name;
+            } catch(err) {
+                stopLoop();
+                const modal = document.querySelector('.backdrop');
+                modal.classList.remove('is-hidden');
+                document.removeEventListener('keydown', onKeyDown);
+                break;
+            }
         }
     }
     const filledRows = findFilledRows();

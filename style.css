@@ -1,3 +1,5 @@
+@import url('https://fonts.cdnfonts.com/css/lvdc-game-over');
+
 * {
     margin: 0;
 }
@@ -227,3 +229,34 @@ body {
     color: white;
     line-height: 26px;
 }
+
+.backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+    background-color: rgba(0, 0, 0, 0.5);
+    transition: opacity 0.3s, visibility 0.3s;
+  }
+
+.backdrop.is-hidden {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+  }
+
+  .modal {
+    font-family: 'LVDC Game Over 2', sans-serif;
+    color: azure;
+    display: flex;
+    margin: auto;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+  }
