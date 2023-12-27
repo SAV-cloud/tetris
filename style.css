@@ -64,7 +64,26 @@ body {
     grid-template-rows: repeat(10, auto);
 }
 
-.tetris div {
+.nextTetro {
+    width: fit-content;
+    background-color: rgb(90, 90, 237);
+    padding: 0.5vh;
+    border-radius: 0.5vh;
+    display: grid;
+    grid-template-columns: repeat(6, auto);
+    grid-template-rows: repeat(2, auto);
+}
+
+.tetris div{
+    height: min(4vh, 7vw);
+    width: min(4vh, 7vw);
+    background-color: rgb(255, 0, 0, 0.205);
+    border-radius: 0.3vh;
+    box-shadow: inset 2px 2px 2px rgba(128, 128, 128, 0.271),
+                inset -2px -2px 2px rgba(240, 0, 0, 0.271);
+}
+
+.nextTetro div {
     height: min(4vh, 7vw);
     width: min(4vh, 7vw);
     background-color: rgb(255, 0, 0, 0.205);
@@ -79,7 +98,7 @@ body {
     text-align: right;
 }
 
-.tetris .O {
+.tetris .O, .nextTetro .O {
     background: rgb(234, 234, 94);
     box-shadow:
         inset 3px 3px 3px rgba(255, 255, 255, 0.213),
@@ -87,7 +106,7 @@ body {
         12px 12px 24px rgba(0, 0, 0, 0.6);  
 }
 
-.tetris .L{
+.tetris .L, .nextTetro .L {
     background: rgb(103, 33, 202);
     box-shadow:
         inset 3px 3px 3px rgba(255, 255, 255, 0.213),
@@ -95,7 +114,7 @@ body {
         12px 12px 24px rgba(0, 0, 0, 0.6);     
 }
 
-.tetris .J{
+.tetris .J, .nextTetro .J{
     background: rgb(235, 221, 70);
     box-shadow:
         inset 3px 3px 3px rgba(255, 255, 255, 0.213),
@@ -103,7 +122,7 @@ body {
         12px 12px 24px rgba(0, 0, 0, 0.6);     
 }
 
-.tetris .I{
+.tetris .I, .nextTetro .I{
     background: rgb(0, 55, 255);
     box-shadow:
         inset 3px 3px 3px rgba(255, 255, 255, 0.213),
@@ -111,7 +130,7 @@ body {
         12px 12px 24px rgba(0, 0, 0, 0.6);     
 }
 
-.tetris .Z{
+.tetris .Z, .nextTetro .Z{
     background: rgb(255, 72, 0);
     box-shadow:
         inset 3px 3px 3px rgba(255, 255, 255, 0.213),
@@ -119,7 +138,7 @@ body {
         12px 12px 24px rgba(0, 0, 0, 0.6);     
 }
 
-.tetris .T{
+.tetris .T, .nextTetro .T{
     background: rgb(255, 0, 174);
     box-shadow:
         inset 3px 3px 3px rgba(255, 255, 255, 0.213),
@@ -127,7 +146,7 @@ body {
         12px 12px 24px rgba(0, 0, 0, 0.6);     
 }
 
-.tetris .S{
+.tetris .S, .nextTetro .S{
     background: rgb(62, 191, 101);
     box-shadow:
         inset 3px 3px 3px rgba(255, 255, 255, 0.213),
