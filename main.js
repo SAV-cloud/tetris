@@ -368,6 +368,9 @@ document.addEventListener('keydown', onKeyDown);
 
 function onKeyDown(event) {
     switch (event.key) {
+        case ' ':
+            dropTetrominoDown();
+            break;
         case 'ArrowUp':
             rotateTetromino();
             break;
@@ -382,6 +385,13 @@ function onKeyDown(event) {
             break;
     }
     draw();
+}
+
+function dropTetrominoDown() {
+    while(!isValid()) {
+        tetromino.row++;
+    }
+    tetromino.row--;
 }
 
 function moveTetrominoDown() {
