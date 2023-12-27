@@ -92,12 +92,15 @@ function generateTetromino() {
     }
 }
 function restart() {
+    stopLoop();
     playfield = new Array(PLAYFIELD_ROWS).fill()
     .map(() => 
         new Array(PLAYFIELD_COLUMNS).fill(0)
     );
     generateTetromino();
-    document.querySelector('.score').innerHTML = 0;
+    score = 0;
+    document.querySelector('.score').innerHTML = score;
+    startLoop();
 }
 
 function start() {
