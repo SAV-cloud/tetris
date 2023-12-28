@@ -11,19 +11,71 @@
     <div class="game ">
         <div class="board">
            <div class="nextTetro">
-
            </div>
+           <div>
+            <button class="button level">
+                Level
+            </button>
+        </div>
             <div class="container">
                 <div class="buttons-box">
-                    <button class="button" onclick="start()">Start</button>
-                    <button class="button" onclick="restart()">Restart</button>
-                    <button class="button" onclick="pause()">Pause</button>
+                    <button class="button start">
+                        <svg width="32" height="32">
+                            <use href="./images/symbol-defs.svg#icon-play3"></use>
+                        </svg>
+                    </button>
+                    <button class="button restart">
+                        <svg width="32" height="32">
+                            <use href="./images/symbol-defs.svg#icon-loop2"></use>
+                        </svg>
+                    </button>
+                    <button class="button pause">
+                        <svg width="32" height="32">
+                            <use href="./images/symbol-defs.svg#icon-pause2"></use>
+                        </svg>
+                    </button>
                 </div>
                 <div class="row">
                   <div class="col col-heading">
                     <h1>Score</h1>
                   </div>
                   <div class="col col-display score">0</div>
+                </div>
+                <div class="buttons-control">
+                    <div>
+                        <button class="button rotate">
+                            <svg class="footer__socials-icon" width="32" height="32">
+                                <use href="./images/symbol-defs.svg#icon-spinner11"></use>
+                            </svg>
+                        </button>
+                        <button class="button fastDown">
+                            <svg class="footer__socials-icon" width="32" height="32">
+                                <use href="./images/symbol-defs.svg#icon-download"></use>
+                            </svg>
+                        </button>
+                        <button class="button bestResult">
+                            <svg class="footer__socials-icon" width="32" height="32">
+                                <use href="./images/symbol-defs.svg#icon-trophy"></use>
+                            </svg>
+                        </button>
+                    </div>
+                    <div>
+                        <button class="button left">
+                            <svg class="footer__socials-icon" width="32" height="32">
+                                <use href="./images/symbol-defs.svg#icon-arrow-left"></use>
+                            </svg>
+                        </button>
+                        <button class="button down">
+                            <svg class="footer__socials-icon" width="32" height="32">
+                                <use href="./images/symbol-defs.svg#icon-arrow-down"></use>
+                            </svg>
+                        </button>
+                        <button class="button right">
+                            <svg class="footer__socials-icon" width="32" height="32">
+                                <use href="./images/symbol-defs.svg#icon-arrow-right"></use>
+                            </svg>
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -32,9 +84,22 @@
     <div class="backdrop is-hidden">
         <div class="modal">
             <p>GAME OVER</p>
-            <button class="button" type="button" onclick="restart()">Restart</button>
+            <button class="button restart2 " type="button" >
+                <svg class="footer__socials-icon" width="32" height="32">
+                    <use href="./images/symbol-defs.svg#icon-loop2"></use>
+                </svg>
+            </button>
         </div>
     </div>
-    <script src="main.js"></script>
+    <div class="menu backdrop is-hidden">
+        <div class="container menu-container">
+            <a href="#" class="close"></a>
+            <h1 class="title">Choose Difficulty</h1>
+            <button class="button level easyBtn">Easy</button>
+            <button class="button level mediumBtn">Medium</button>
+            <button class="button level hardBtn">Hard</button>
+        </div>
+    </div>
+    <script type="module" src="main.js"></script>
 </body>
 </html>

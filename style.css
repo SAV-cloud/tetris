@@ -1,4 +1,5 @@
 @import url('https://fonts.cdnfonts.com/css/lvdc-game-over');
+@import url("https://fonts.googleapis.com/css2?family=Silkscreen&display=swap");
 
 * {
     margin: 0;
@@ -9,25 +10,6 @@
     flex-direction: row-reverse;
     align-items: end;
     gap: 32px;
-}
-@media screen and (max-width: 480px) {
-    .game {
-        flex-direction: column;
-        align-items: center;
-        gap: 5px;
-    }
-    
-    .container {
-        height: 60px;
-    }
-
-    .button {
-        padding: 8px;
-        font-size: 8px;
-        font-weight: 300;
-        color: white;
-        line-height: 8px;
-    }
 }
 
 .board {
@@ -164,8 +146,6 @@ body {
         12px 12px 24px rgba(0, 0, 0, 0.6);     
 }
 
-@import url("https://fonts.googleapis.com/css2?family=Silkscreen&display=swap");
-
 .container {
   max-width: 200px;
   max-height: 200px;
@@ -215,19 +195,21 @@ body {
 }
 
 .button {
-    display: inline-block;
     outline: 0;
     border: 0;
     cursor: pointer;
     background-color: #8001ff;
     border-radius: 4px;
-    max-width: 100px;
+
     padding: 8px;
     font-size: 16px;
     border-bottom: 4px solid #2b6cb0;
     font-weight: 700;
     color: white;
     line-height: 26px;
+    width: 50px;
+    height: 50px;
+    align-items: center;
 }
 
 .backdrop {
@@ -259,4 +241,73 @@ body {
     flex-direction: column;
     align-items: center;
     gap: 12px;
+  }
+
+  @media screen and (max-width: 480px) {
+    .game {
+        flex-direction: column;
+        align-items: center;
+        gap: 5px;
+    }
+    
+    .container {
+        height: 60px;
+    }
+
+    .button {
+        padding: 8px;
+        font-size: 8px;
+        font-weight: 300;
+        color: white;
+        line-height: 8px;
+    }
+}
+
+.level {
+    width: 60px;
+    font-size: 12px;
+}
+
+.menu-container {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 12px;
+    padding: 40px;
+}
+
+.title {
+    font-family: 'LVDC Game Over 2', sans-serif;
+    color: azure;
+    margin: auto;
+    font-size: 8px;
+    align-items: center;
+    gap: 12px;
+}
+
+.close {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    width: 32px;
+    height: 32px;
+    opacity: 0.3;
+  }
+  .close:hover {
+    opacity: 1;
+  }
+  .close:before, .close:after {
+    position: absolute;
+    left: 15px;
+    content: ' ';
+    height: 33px;
+    width: 2px;
+    background-color: #333;
+  }
+  .close:before {
+    transform: rotate(45deg);
+  }
+  .close:after {
+    transform: rotate(-45deg);
   }
