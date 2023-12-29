@@ -51,5 +51,8 @@ export const TETROMINOES = {
     ]
 };
 
-export const btnRestart    = document.querySelector('.restart')
-
+export const btnRestart = document.querySelector('.restart')
+export const storedScores = JSON.parse(localStorage.getItem('bestScores')) || [];
+export const btnRestart2 = document.querySelector('.restart2');
+export const btnPause = document.querySelector('.pause');
+export const btnStart = document.querySelector('.start');
