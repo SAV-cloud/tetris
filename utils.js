@@ -52,7 +52,7 @@ export const TETROMINOES = {
 };
 
 export const btnRestart = document.querySelector('.restart')
-export const storedScores = JSON.parse(localStorage.getItem('bestScores')) || [];
+export const storedScores = JSON.parse(localStorage.getItem('bestScores')) || [0, 0, 0];
 export const btnRestart2 = document.querySelector('.restart2');
 export const btnPause = document.querySelector('.pause');
 export const btnStart = document.querySelector('.start');
