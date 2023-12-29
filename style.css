@@ -261,6 +261,15 @@ body {
         color: white;
         line-height: 8px;
     }
+    .buttons-control, .buttons-box {
+        display: none;
+    }
+    .board {
+        flex-direction: row;
+    }
+    .level {
+        display: none;
+    }
 }
 
 .level {
