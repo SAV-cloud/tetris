@@ -84,6 +84,8 @@
     <div class="backdrop is-hidden">
         <div class="modal">
             <p>GAME OVER</p>
+            <p class="bestScore"></p>
+            <p class="scoreValue"></p>
             <button class="button restart2 " type="button" >
                 <svg class="footer__socials-icon" width="32" height="32">
                     <use href="./images/symbol-defs.svg#icon-loop2"></use>
@@ -100,6 +102,13 @@
             <button class="button level hardBtn">Hard</button>
         </div>
     </div>
+    <div class="best backdrop is-hidden">
+        <div class="menu-container container">
+            <a href="#" class="close" id="closeBest"></a>
+            <h2 class="title">Best Results</h2>
+            <ol class="bestScoresList"></ol>
+        </div>
+      </div>
     <script type="module" src="main.js"></script>
 </body>
 </html>

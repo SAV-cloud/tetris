@@ -311,3 +311,8 @@ body {
   .close:after {
     transform: rotate(-45deg);
   }
+
+.bestScoresList {
+    list-style-type: none;
+    padding: 0;
+}

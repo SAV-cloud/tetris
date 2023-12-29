@@ -7,6 +7,8 @@ import {
     NEXT_TETRO_COLUMNS,
     NEXT_TETRO_ROWS
  } from './utils.js';
+ 
+const storedScores = JSON.parse(localStorage.getItem('bestScores')) || [];
 
 let playfield;
 let nexTetroField;
@@ -26,8 +28,6 @@ init();
 stopLoop();
 
 function init(){
-
-    document.addEventListener('keydown', onKeyDown);
     document.querySelector('.backdrop').classList.add('is-hidden');
     isGameOver = false;
     isPaused = false;
@@ -170,7 +170,6 @@ function drawPlayField() {
 
     for (let row = 0; row < PLAYFIELD_ROWS; row++) {
         for (let column = 0; column < PLAYFIELD_COLUMNS; column++) {
-            // if(playfield[row][column] == 0) { continue };
             const name = playfield[row][column];
             const cellIndex = convertPositionToIndex(row, column);
             cells[cellIndex].classList.add(name);
@@ -183,7 +182,6 @@ function drawPlayFieldNext() {
 
     for (let row = 0; row < NEXT_TETRO_ROWS; row++) {
         for (let column = 0; column < NEXT_TETRO_COLUMNS; column++) {
-            // if(playfield[row][column] == 0) { continue };
             const name = nexTetroField[row][column];
             const cellIndex = convertPositionToIndexNext(row, column);
             cellsNext[cellIndex].classList.add(name);
@@ -198,7 +196,6 @@ function drawTetromino() {
 
     for (let row = 0; row < tetrominoMatrixSize; row++) {
         for (let column = 0; column < tetrominoMatrixSize; column++) {
-            // cells[cellIndex].innerHTML = array[row][column];
             if (isOutsideTopBoard(row)) { continue }
             if (tetromino.matrix[row][column] == 0) { continue }
             const cellIndex = convertPositionToIndex(tetromino.row + row, tetromino.column + column);
@@ -214,10 +211,6 @@ function drawTetrominoNext() {
     const tetrominoMatrixSize = nextTetromino.matrix.length;
     for (let row = 0; row < tetrominoMatrixSize; row++) {
         for (let column = 0; column < tetrominoMatrixSize; column++) {
-            // cells[cellIndex].innerHTML = array[row][column];
-            // if (tetromino.row < 0) {
-            //     continue;
-            // }
             if (nextTetromino.matrix[row][column] == 0) {
                 continue;
             }
@@ -231,7 +224,6 @@ function draw() {
     cells.forEach(function (cell) { cell.removeAttribute('class') });
     drawPlayField();
     drawTetromino();
-    // console.table(playfield)
 }
 
 function countScore(destroyRows) {
@@ -271,28 +263,38 @@ function selectLevel(selectedLevel) {
 document.querySelector('.easyBtn').addEventListener('click', function() {
     selectLevel('easy');
     const modal = document.querySelector('.menu');
-    modal.classList.add('is-hidden'); 
+    modal.classList.add('is-hidden');
+    togglePauseGame();
 });
 
 document.querySelector('.mediumBtn').addEventListener('click', function() {
     selectLevel('medium');
     const modal = document.querySelector('.menu');
-    modal.classList.add('is-hidden'); 
+    modal.classList.add('is-hidden');
+    togglePauseGame();
 });
 
 document.querySelector('.hardBtn').addEventListener('click', function() {
     selectLevel('hard');
     const modal = document.querySelector('.menu');
     modal.classList.add('is-hidden'); 
+    togglePauseGame();
 });
 
 document.querySelector('.level').addEventListener('click', function() {
     const modal = document.querySelector('.menu');
-    modal.classList.remove('is-hidden'); 
+    modal.classList.remove('is-hidden');
+    isPaused = false;
+    togglePauseGame();
 });
 
 document.querySelector('.close').addEventListener('click', function() {
     const modal = document.querySelector('.menu');
+    modal.classList.add('is-hidden');
+});
+
+document.querySelector('#closeBest').addEventListener('click', function() {
+    const modal = document.querySelector('.best');
     modal.classList.add('is-hidden');
 });
 
@@ -322,7 +324,13 @@ function gameOver(){
     stopLoop();
     const modal = document.querySelector('.backdrop');
     modal.classList.remove('is-hidden'); 
-    // document.removeEventListener('keydown', onKeyDown);
+    const scoreBoard = document.querySelector('.scoreValue');
+    scoreBoard.innerHTML =`Your score: ${score}`;
+    let bestScoreNow = storedScores[0] > score ? storedScores[0] : score;
+    const bestScore = document.querySelector('.bestScore');
+    bestScore.innerHTML =`Best score: ${bestScoreNow}` ;
+    updateBestScores(score);
+    document.removeEventListener('keydown', onKeyDown);
 }
 
 function getRandomElement(array){
@@ -487,6 +495,7 @@ const btnRestart2    = document.querySelector('.restart2');
 btnRestart2.addEventListener('click', function(){
     this.blur(); 
     init();
+    document.addEventListener('keydown', onKeyDown);  
 });
 
 const btnPause    = document.querySelector('.pause');
@@ -496,6 +505,7 @@ btnPause.addEventListener('click', function(){
 
 const btnStart    = document.querySelector('.start');
 btnStart.addEventListener('click', function(){
+    document.addEventListener('keydown', onKeyDown);   
     isPaused = false;
     startLoop();
 });
@@ -509,3 +519,28 @@ function shaking() {
     }, 1000);
 }
 
+function updateBestScores(newScore) {
+    storedScores.push(newScore);
+    storedScores.sort((a, b) => b - a);
+    storedScores.splice(3);
+    localStorage.setItem('bestScores', JSON.stringify(storedScores));
+}
+
+function displayBestScores() {
+    const bestScoresList = document.querySelector('.bestScoresList');
+    bestScoresList.innerHTML = '';
+
+    storedScores.slice(0, 3).forEach((score, index) => {
+        const listItem = document.createElement('li');
+        listItem.textContent = `${index + 1} place : ${score} points`;
+        bestScoresList.appendChild(listItem);
+    });
+}
+
+document.querySelector('.bestResult').addEventListener('click', function() {
+    const modal = document.querySelector('.best');
+    modal.classList.remove('is-hidden'); 
+    displayBestScores();
+    isPaused = false;
+    togglePauseGame();
+});
