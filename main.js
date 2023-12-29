@@ -166,29 +166,16 @@ function generateTetromino(isFirst) {
     
 }
 
-function drawPlayField() {
-
-    for (let row = 0; row < PLAYFIELD_ROWS; row++) {
-        for (let column = 0; column < PLAYFIELD_COLUMNS; column++) {
-            const name = playfield[row][column];
-            const cellIndex = convertPositionToIndex(row, column);
+function drawPlayField(field, cells, numRows, numColumns) {
+    for (let row = 0; row < numRows; row++) {
+        for (let column = 0; column < numColumns; column++) {
+            const name = field[row][column];
+            const cellIndex = convertPositionToIndex(row, column, numColumns);
             cells[cellIndex].classList.add(name);
         }
     }
-
 }
 
-function drawPlayFieldNext() {
-
-    for (let row = 0; row < NEXT_TETRO_ROWS; row++) {
-        for (let column = 0; column < NEXT_TETRO_COLUMNS; column++) {
-            const name = nexTetroField[row][column];
-            const cellIndex = convertPositionToIndexNext(row, column);
-            cellsNext[cellIndex].classList.add(name);
-        }
-    }
-
-}
 
 function drawTetromino() {
     const name = tetromino.name;
@@ -198,7 +185,7 @@ function drawTetromino() {
         for (let column = 0; column < tetrominoMatrixSize; column++) {
             if (isOutsideTopBoard(row)) { continue }
             if (tetromino.matrix[row][column] == 0) { continue }
-            const cellIndex = convertPositionToIndex(tetromino.row + row, tetromino.column + column);
+            const cellIndex = convertPositionToIndex(tetromino.row + row, tetromino.column + column, PLAYFIELD_COLUMNS);
             cells[cellIndex].classList.add(name);
         }
     }
@@ -214,7 +201,7 @@ function drawTetrominoNext() {
             if (nextTetromino.matrix[row][column] == 0) {
                 continue;
             }
-            const cellIndex = convertPositionToIndexNext(row + extraRow,column + extraColumn);
+            const cellIndex = convertPositionToIndex(row + extraRow,column + extraColumn, NEXT_TETRO_COLUMNS);
             cellsNext[cellIndex].classList.add(name);
         }
     }
@@ -222,7 +209,7 @@ function drawTetrominoNext() {
 
 function draw() {
     cells.forEach(function (cell) { cell.removeAttribute('class') });
-    drawPlayField();
+    drawPlayField(playfield, cells, PLAYFIELD_ROWS, PLAYFIELD_COLUMNS);
     drawTetromino();
 }
 
@@ -278,14 +265,8 @@ function getRandomElement(array) {
     return array[randomIndex];
 }
 
-
-function convertPositionToIndex(row, column) {
-    return row * PLAYFIELD_COLUMNS + column;
-}
-
-
-function convertPositionToIndexNext(row, column) {
-    return row * NEXT_TETRO_COLUMNS + column;
+function convertPositionToIndex(row, column, columnValue) {
+    return row * columnValue + column;
 }
 
 function isOutsideTopBoard(row) {
@@ -310,7 +291,7 @@ function placeTetromino() {
     removeFillRows(filledRows);
     generateTetromino(false);
     cellsNext.forEach(function (cell) { cell.removeAttribute('class') });
-    drawPlayFieldNext();
+    drawPlayField(nexTetroField, cellsNext, NEXT_TETRO_ROWS, NEXT_TETRO_COLUMNS);
     drawTetrominoNext();
 }
 
